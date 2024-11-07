@@ -7,16 +7,16 @@ export class Gps extends BaseEntity {
     id: number;
 
     @Column('decimal', { precision: 9, scale: 6 })
-    coor_latitude: number;
+    latitude: number;
 
     @Column('decimal', { precision: 9, scale: 6 })
-    coor_length: number;
+    longitude: number;
 
     @Column('char', { length: 60 })
     address: string;
 
     @Column('timestamp')
-    search_date: Date;
+    searchDate: Date;
 
     @CreateDateColumn()
     createAt: Date;
