@@ -2,6 +2,11 @@ require("dotenv").config();
 import "reflect-metadata";
 import { DataSource } from "typeorm";
 import { Gps } from "./entities/Gps";
+import { Rol } from "./entities/Rol";
+import { Children } from "./entities/Children";
+import { Behavior } from "./entities/Behavior";
+import { Cards } from "./entities/Cards";
+import { Elves } from "./entities/Elves";
 
 export const AppDataSource = new DataSource({
     type: "postgres",
@@ -12,5 +17,5 @@ export const AppDataSource = new DataSource({
     database: process.env.DB_NAME,
     synchronize: true,
     logging: false,
-    entities: [Gps],
+    entities: [Gps, Rol,Children, Behavior, Cards, Elves],
 });
