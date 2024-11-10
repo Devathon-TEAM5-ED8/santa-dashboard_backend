@@ -8,7 +8,7 @@ import { Behavior } from "./entities/Behavior";
 import { Cards } from "./entities/Cards";
 import { Elves } from "./entities/Elves";
 import { climate } from "./entities/Climate";
-import { reindeer } from "./entities/Reindeer";
+import { Reindeer } from "./entities/Reindeer";
 import { reindeerAlignment } from "./entities/ReindeerAlignment";
 
 export const AppDataSource = new DataSource({
@@ -28,7 +28,7 @@ export const AppDataSource = new DataSource({
     Cards,
     Elves,
     climate,
-    reindeer,
+    Reindeer,
     reindeerAlignment,
   ],
 });
