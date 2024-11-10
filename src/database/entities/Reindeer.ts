@@ -17,9 +17,8 @@ export class reindeer extends BaseEntity {
   @Column("text")
   quality: string;
 
-  @Column("int")
+  @Column("int", { unique: true })
   currentPosition: number;
-
   @CreateDateColumn()
   creationDate: Date;
 }
