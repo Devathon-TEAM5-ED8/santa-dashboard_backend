@@ -1,36 +1,36 @@
+import { Request, Response } from 'express';
 import { Gps } from "../../database/entities/Gps";
 
 export class GpsController {
 
-    async createGps(req: any, res: any) {
+    async createGps(req: Request, res: Response) {
 
         let params = req.body;
 
-        if (!params.latitude || !params.longitude || !params.address || !params.searchDate) {
+        // return res.status(200).json(params.latitude);
+
+        if (!params.address || !params.searchDate) {
             return res.status(422).json({
                 status: 'error',
-                message: 'Faltan datos por enviar'
+                message: 'Faltan datos por enviar',
             });
         } else {
-
-            const gps = new Gps();
-            gps.latitude = params.latitude;
-            gps.longitude = params.longitude;
-            gps.address = params.address;
-            gps.searchDate = params.searchDate;
-            gps.save();
+            console.log(params);
+            const { latitude, longitude, address, searchDate } = params;
+            const newGps = Gps.create({ latitude, longitude, address, searchDate });
+            await newGps.save();
 
             return res.status(200).json({
                 status: 'success',
                 message: 'Gps creado',
-                gps
+                newGps
             });
 
         }
 
     }
 
-    async getAllGps(req: any, res: any) {
+    async getAllGps(req: Request, res: Response) {
         const gps = await Gps.find();
         return res.status(200).json({
             status: 'success',
@@ -38,9 +38,11 @@ export class GpsController {
         });
     }
 
-    async getGpsById(req: any, res: any) {
+    async getGpsById(req: Request, res: Response) {
 
-        const { id } = req.query;
+        const url = req.path;
+        const query = url.split('/');
+        const id = query[2];
 
         if (!id) {
             return res.status(422).json({
@@ -58,9 +60,11 @@ export class GpsController {
 
     }
 
-    async updateGps(req: any, res: any) {
+    async updateGps(req: Request, res: Response) {
 
-        const { id } = req.query;
+        const url = req.path;
+        const query = url.split('/');
+        const id = query[2];
 
         if (!id) {
             return res.status(422).json({
@@ -76,7 +80,7 @@ export class GpsController {
                 );
             } else {
 
-                Object.assign(gps, req.params);
+                Object.assign(gps, req.body);
                 await gps.save();
 
                 return res.status(200).json({
@@ -90,9 +94,11 @@ export class GpsController {
 
     }
 
-    async deleteGps(req: any, res: any) {
+    async deleteGps(req: Request, res: Response) {
 
-        const { id } = req.query;
+        const url = req.path;
+        const query = url.split('/');
+        const id = query[2];
 
         if (!id) {
             return res.status(422).json({
