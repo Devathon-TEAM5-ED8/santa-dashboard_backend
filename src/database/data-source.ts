@@ -7,7 +7,7 @@ import { Children } from "./entities/Children";
 import { Behavior } from "./entities/Behavior";
 import { Cards } from "./entities/Cards";
 import { Elves } from "./entities/Elves";
-import { climate } from "./entities/Climate";
+import { Climate } from "./entities/Climate";
 import { Reindeer } from "./entities/Reindeer";
 import { reindeerAlignment } from "./entities/ReindeerAlignment";
 
@@ -20,6 +20,9 @@ export const AppDataSource = new DataSource({
   database: process.env.DB_NAME,
   synchronize: true,
   logging: false,
+  ssl: {
+    rejectUnauthorized: false,
+  },
   entities: [
     Gps,
     Rol,
@@ -27,7 +30,7 @@ export const AppDataSource = new DataSource({
     Behavior,
     Cards,
     Elves,
-    climate,
+    Climate,
     Reindeer,
     reindeerAlignment,
   ],

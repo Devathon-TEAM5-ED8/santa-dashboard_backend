@@ -7,23 +7,23 @@ import {
 } from "typeorm";
 
 @Entity("climate")
-export class climate extends BaseEntity {
+export class Climate extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column("decimal", { precision: 5, scale: 2 })
+  @Column("decimal", { precision: 7, scale: 2 })
   temperature: number;
 
-  @Column("decimal", { precision: 5, scale: 2 })
+  @Column("decimal", { precision: 7, scale: 2 })
   minTemperature: number;
 
-  @Column("decimal", { precision: 5, scale: 2 })
+  @Column("decimal", { precision: 7, scale: 2 })
   windSpeed: number;
 
-  @Column("decimal", { precision: 5, scale: 2 })
+  @Column("decimal", { precision: 7, scale: 2 })
   visibility: number;
 
-  @Column("decimal", { precision: 5, scale: 2 })
+  @Column("decimal", { precision: 7, scale: 2 })
   humidity: number;
 
   @Column("text")
