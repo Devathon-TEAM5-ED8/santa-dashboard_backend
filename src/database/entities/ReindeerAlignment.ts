@@ -7,7 +7,7 @@ import {
   ManyToOne,
   JoinColumn,
 } from "typeorm";
-import { reindeer } from "./Reindeer";
+import { Reindeer } from "./Reindeer";
 
 @Entity("reindeerAlignment")
 export class reindeerAlignment extends BaseEntity {
@@ -20,7 +20,7 @@ export class reindeerAlignment extends BaseEntity {
   @CreateDateColumn()
   creationDate: Date;
 
-  @ManyToOne(() => reindeer, (reindeer) => reindeer.id)
+  @ManyToOne(() => Reindeer, (reindeer) => reindeer.id)
   @JoinColumn({ name: "reindeerId" })
-  reindeer: reindeer;
+  reindeer: Reindeer;
 }

@@ -7,7 +7,7 @@ import {
 } from "typeorm";
 
 @Entity("reindeer")
-export class reindeer extends BaseEntity {
+export class Reindeer extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
