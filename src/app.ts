@@ -14,11 +14,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use("/gps", routerGps);
-
-app.post("/mensaje_nuevo", (req, res) => {
-  console.log(req.body);
-  res.status(200).json({ message: "Mensaje recibido y enviado" });
-});
 app.use("/reindeer", reindeerRouters);
 app.use("/climate", climateRouters);
 
