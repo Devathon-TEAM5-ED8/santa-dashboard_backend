@@ -47,6 +47,24 @@ export class GpsController {
         }
     }
 
+    async getLastFiveLocations(req: Request, res: Response) {
+        try {
+            const gps = await Gps.find({
+                order: {
+                    id: 'DESC'
+                },
+                take: 5
+            });
+
+            return res.status(200).json({
+                status: 'success',
+                gps
+            });
+        } catch (error) {
+            return res.status(500).json({ message: 'Error al obtener el listado de ubicaciones', error });
+        }
+    }
+
     async getGpsById(req: Request, res: Response) {
 
         try {
