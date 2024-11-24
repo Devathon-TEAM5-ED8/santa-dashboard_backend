@@ -17,8 +17,8 @@ export class GpsController {
                 });
             } else {
                 console.log(params);
-                const { latitude, longitude, address, searchDate } = params;
-                const newGps = Gps.create({ latitude, longitude, address, searchDate });
+                const { latitude, longitude, city, address, searchDate } = params;
+                const newGps = Gps.create({ latitude, longitude, city, address, searchDate });
                 await newGps.save();
 
                 return res.status(200).json({

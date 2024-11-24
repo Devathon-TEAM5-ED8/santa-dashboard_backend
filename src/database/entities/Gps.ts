@@ -13,6 +13,9 @@ export class Gps extends BaseEntity {
     longitude: number;
 
     @Column('char', { length: 60 })
+    city: string;
+
+    @Column('char', { length: 60 })
     address: string;
 
     @Column('timestamp')
