@@ -10,7 +10,7 @@ export class GpsController {
 
             // return res.status(200).json(params.latitude);
 
-            if (!params.address || !params.searchDate) {
+            if (!params.address || !params.searchDate || !params.city) {
                 return res.status(422).json({
                     status: 'error',
                     message: 'Faltan datos por enviar',
