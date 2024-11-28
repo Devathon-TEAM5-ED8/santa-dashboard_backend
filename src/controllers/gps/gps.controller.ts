@@ -10,15 +10,15 @@ export class GpsController {
 
             // return res.status(200).json(params.latitude);
 
-            if (!params.address || !params.searchDate) {
+            if (!params.address || !params.searchDate || !params.city) {
                 return res.status(422).json({
                     status: 'error',
                     message: 'Faltan datos por enviar',
                 });
             } else {
                 console.log(params);
-                const { latitude, longitude, address, searchDate } = params;
-                const newGps = Gps.create({ latitude, longitude, address, searchDate });
+                const { latitude, longitude, city, address, searchDate } = params;
+                const newGps = Gps.create({ latitude, longitude, city, address, searchDate });
                 await newGps.save();
 
                 return res.status(200).json({
@@ -38,6 +38,24 @@ export class GpsController {
     async getAllGps(req: Request, res: Response) {
         try {
             const gps = await Gps.find();
+            return res.status(200).json({
+                status: 'success',
+                gps
+            });
+        } catch (error) {
+            return res.status(500).json({ message: 'Error al obtener el listado de ubicaciones', error });
+        }
+    }
+
+    async getLastFiveLocations(req: Request, res: Response) {
+        try {
+            const gps = await Gps.find({
+                order: {
+                    id: 'DESC'
+                },
+                take: 5
+            });
+
             return res.status(200).json({
                 status: 'success',
                 gps

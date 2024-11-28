@@ -6,6 +6,7 @@ const controller = new GpsController();
 
 routerGps.post('/create', controller.createGps);           // Crear un niño
 routerGps.get('/getAll', controller.getAllGps);         // Obtener todos los niños
+routerGps.get('/getLastFiveLocations', controller.getLastFiveLocations);         // Obtener todos los niños
 routerGps.get('/byId/:id', controller.getGpsById);       // Obtener un niño por ID
 routerGps.put('/update/:id', controller.updateGps);        // Actualizar un niño
 routerGps.delete('/delete/:id', controller.deleteGps);     // Eliminar un niño
