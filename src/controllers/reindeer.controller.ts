@@ -86,19 +86,19 @@ export class ReindeerController {
           message: "La lista de renos debe contener 9 elementos",
         });
       }
+      for (let i = 0; i < req.body.length; i++) {
+        const reindeerUpdate = await Reindeer.findOneBy({
+          id: req.body[i].idReindeer,
+        });
+
+        if (reindeerUpdate) {
+          reindeerUpdate.currentPosition = 1000 + i;
+          await reindeerUpdate.save();
+        }
+      }
 
       const reindeerList = req.body;
       for (let i = 0; i < reindeerList.length; i++) {
-        const reindeerPosition = await Reindeer.findOneBy({
-          currentPosition: reindeerList[i].newPosition,
-        });
-
-        if (reindeerPosition) {
-          reindeerPosition.currentPosition =
-            Math.floor(Math.random() * 10) + 1000;
-          await reindeerPosition.save();
-        }
-
         const reindeer = await Reindeer.findOneBy({
           id: reindeerList[i].idReindeer,
         });
