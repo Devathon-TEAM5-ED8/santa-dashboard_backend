@@ -3,7 +3,7 @@ import cors from "cors";
 interface CorsOptions {
   acceptedOrigins?: string[];
 }
-const ACCEPTED_ORIGINS: string[] = ["http://localhost:4200"];
+const ACCEPTED_ORIGINS: string[] = ["http://localhost:4200", "https://santa-dashboard.netlify.app"];
 
 export const corsMiddleware = ({
   acceptedOrigins = ACCEPTED_ORIGINS,
